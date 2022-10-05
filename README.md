@@ -37,3 +37,29 @@ Bu proje kişiselleştirilmiş bir C kütüphane projesidir, içerisinde C de ye
 
 
 - **ft_tolower** : `int	ft_tolower(int c);` fonksiyonu, c parametresi ile verilen karakterin büyük harf olup olmadığını kontrol eder. Eğer büyük harf ise küçük harfe çevirir ve döndürür, değilse c parametresini döndürür.
+
+------------
+
+- **ft_strchr** : `char	*ft_strchr(const char *s, int c);` fonksiyonu, s parametresi ile verilen karakter dizisinde c parametresi ile verilen karakteri arar. Eğer karakter dizisinde c parametresi ile verilen karakter var ise ilk bulduğu karakterin adresini döndürür, yok ise NULL döndürür.
+
+------------
+
+- **ft_strrchr** : `char	*ft_strrchr(const char *s, int c);` fonksiyonu, s parametresi ile verilen karakter dizisinde c parametresi ile verilen karakteri sondan başa doğru arar. Eğer karakter dizisinde c parametresi ile verilen karakter var ise karakterin adresini döndürür, yok ise NULL döndürür.
+
+------------
+
+- **ft_strncmp** : `int	ft_strncmp(const char *s1, const char *s2, size_t n);` fonksiyonu, s1 ve s2 parametreleri ile verilen karakter dizilerini n parametresi ile verilen sayı kadar karşılaştırır. Eğer s1 ve s2 parametreleri ile verilen karakter dizileri aynı ise 0 döndürür, s1 karakter dizisi s2 karakter dizisinden büyük ise 0'dan büyük sayı döndürür, s1 karakter dizisi s2 karakter dizisinden küçük ise 0'dan küçük sayı döndürür.
+
+------------
+
+- **ft_strlcpy** : `size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);` fonksiyonu, src parametresi ile verilen karakter dizisini dst parametresi ile verilen karakter dizisine kopyalar. Kopyalama işlemi dstsize parametresi ile verilen sayı kadar yapılır. Eğer src parametresi ile verilen karakter dizisi dst parametresi ile verilen karakter dizisinden büyük ise dstsize parametresi ile verilen sayı kadar kopyalama yapılır ve dstsize parametresi ile verilen sayıdan 1 eksik sayı kadar karakter kopyalanır. Eğer src parametresi ile verilen karakter dizisi dst parametresi ile verilen karakter dizisinden küçük ise src parametresi ile verilen karakter dizisinin uzunluğu kadar kopyalama yapılır ve src parametresi ile verilen karakter dizisinin uzunluğu kadar karakter kopyalanır. Fonksiyonun döndürdüğü değer ise kopyalama işlemi sonucunda dst parametresi ile verilen karakter dizisindeki karakter sayısıdır.
+
+------------
+
+- **ft_strlcat** : `size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);` fonksiyonu, src parametresi ile verilen karakter dizisini dst parametresi ile verilen karakter dizisinin sonuna ekler. Kopyalama işlemi dstsize parametresi ile verilen sayı kadar yapılır. Eğer src parametresi ile verilen karakter dizisi dst parametresi ile verilen karakter dizisinden büyük ise dstsize parametresi ile verilen sayı kadar kopyalama yapılır ve dstsize parametresi ile verilen sayıdan 1 eksik sayı kadar karakter kopyalanır. Eğer src parametresi ile verilen karakter dizisi dst parametresi ile verilen karakter dizisinden küçük ise src parametresi ile verilen karakter dizisinin uzunluğu kadar kopyalama yapılır ve src parametresi ile verilen karakter dizisinin uzunluğu kadar karakter kopyalanır. Fonksiyonun döndürdüğü değer ise kopyalama işlemi sonucunda dst parametresi ile verilen karakter dizisindeki karakter sayısıdır.
+
+------------
+
+- **ft_strnstr** : `char	*ft_strnstr(const char *haystack, const char *needle, size_t len);` fonksiyonu, haystack parametresi ile verilen karakter dizisinde needle parametresi ile verilen karakter dizisini len parametresi ile verilen sayı kadar arar. Eğer haystack parametresi ile verilen karakter dizisinde needle parametresi ile verilen karakter dizisi var ise ilk bulduğu karakter dizisinin adresini döndürür, yok ise NULL döndürür.
+
+------------
