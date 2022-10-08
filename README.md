@@ -63,3 +63,37 @@ Bu proje kişiselleştirilmiş bir C kütüphane projesidir, içerisinde C de ye
 - **ft_strnstr** : `char	*ft_strnstr(const char *haystack, const char *needle, size_t len);` fonksiyonu, haystack parametresi ile verilen karakter dizisinde needle parametresi ile verilen karakter dizisini len parametresi ile verilen sayı kadar arar. Eğer haystack parametresi ile verilen karakter dizisinde needle parametresi ile verilen karakter dizisi var ise ilk bulduğu karakter dizisinin adresini döndürür, yok ise NULL döndürür.
 
 ------------
+
+- **ft_memset** : `void	*ft_memset(void *b, int c, size_t len);` fonksiyonu, b parametresi ile verilen bellek alanını c parametresi ile verilen karakter ile len parametresi ile verilen sayı kadar doldurur.
+
+------------
+
+- **ft_memchr** : `void	*ft_memchr(const void *s, int c, size_t n);` fonksiyonu, s parametresi ile verilen bellek alanında c parametresi ile verilen karakteri n parametresi ile verilen sayı kadar arar. Eğer bellek alanında c parametresi ile verilen karakter var ise karakterin adresini döndürür, yok ise NULL döndürür.
+
+------------
+
+- **ft_memcpy** : `void	*ft_memcpy(void *dst, const void *src, size_t n);` fonksiyonu, src parametresi ile verilen bellek alanını dst parametresi ile verilen bellek alanına n parametresi ile verilen sayı kadar kopyalar.
+
+------------
+
+- **ft_memcmp** : `int	ft_memcmp(const void *s1, const void *s2, size_t n);` fonksiyonu, s1 ve s2 parametreleri ile verilen bellek alanlarını n parametresi ile verilen sayı kadar karşılaştırır. Eğer s1 ve s2 parametreleri ile verilen bellek alanları aynı ise 0 döndürür, s1 bellek alanı s2 bellek alanından büyük ise 0'dan büyük sayı döndürür, s1 bellek alanı s2 bellek alanından küçük ise 0'dan küçük sayı döndürür.
+
+------------
+
+- **ft_memmove** : `void	*ft_memmove(void *dst, const void *src, size_t len);` fonksiyonu, src parametresi ile verilen bellek alanını dst parametresi ile verilen bellek alanına len parametresi ile verilen sayı kadar kopyalar. Eğer src parametresi ile verilen bellek alanı dst parametresi ile verilen bellek alanından büyük ise bellek alanlarını kopyalarken sondan başa doğru kopyalama yapar. Eğer src parametresi ile verilen bellek alanı dst parametresi ile verilen bellek alanından küçük ise bellek alanlarını kopyalarken baştan sona doğru kopyalama yapar.
+
+------------
+
+- **ft_atoi** : `int	ft_atoi(const char *str);` fonksiyonu, str parametresi ile verilen karakter dizisini sayıya çevirir. Eğer str parametresi ile verilen karakter dizisi sayısal değer içermiyorsa 0 döndürür.
+
+------------
+
+- **ft_bzero** : `void	ft_bzero(void *s, size_t n);` fonksiyonu, s parametresi ile verilen bellek alanını n parametresi ile verilen sayı kadar 0 ile doldurur.
+
+------------
+
+- **ft_calloc** : `void	*ft_calloc(size_t count, size_t size);` fonksiyonu, count parametresi ile verilen sayı kadar size parametresi ile verilen sayı kadar bellek alanı ayırır. Ayırdığı bellek alanını 0 ile doldurur. (**NOT: Null değil 0 ile doldurur.**)
+
+------------
+
+- **ft_strdup** : `char	*ft_strdup(const char *s1);` fonksiyonu, s1 parametresi ile verilen karakter dizisini bellekte ayrı bir yerde kopyalar ve kopyalanan karakter dizisinin adresini döndürür.
