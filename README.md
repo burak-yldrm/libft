@@ -97,3 +97,27 @@ Bu proje kişiselleştirilmiş bir C kütüphane projesidir, içerisinde C de ye
 ------------
 
 - **ft_strdup** : `char	*ft_strdup(const char *s1);` fonksiyonu, s1 parametresi ile verilen karakter dizisini bellekte ayrı bir yerde kopyalar ve kopyalanan karakter dizisinin adresini döndürür.
+
+------------
+
+- **ft_substr** : `char	*ft_substr(char const *s, unsigned int start, size_t len);` fonksiyonu, s parametresi ile verilen karakter dizisinden start parametresi ile verilen sayıdan başlayarak len parametresi ile verilen sayı kadar karakteri kopyalar ve kopyalanan karakter dizisinin adresini döndürür.
+
+------------
+
+- **ft_strjoin** : `char	*ft_strjoin(char const *s1, char const *s2);` fonksiyonu, s1 ve s2 parametreleri ile verilen karakter dizilerini birleştirir ve birleştirilen karakter dizisinin adresini döndürür.
+
+------------
+
+- **ft_strtrim** : `char	*ft_strtrim(char const *s1, char const *set);` fonksiyonu, s1 parametresi ile verilen karakter dizisinden set parametresi ile verilen karakter dizisindeki karakterleri siler ve silinmiş karakter dizisinin adresini döndürür.
+
+------------
+
+- **ft_split** : `char	**ft_split(char const *s, char c);` fonksiyonu, s parametresi ile verilen karakter dizisini c parametresi ile verilen karaktere göre parçalar ve parçalanan karakter dizilerinin adreslerini bir diziye atar ve bu dizinin adresini döndürür.
+
+------------
+
+- **ft_itoa** : `char	*ft_itoa(int n);` fonksiyonu, n parametresi ile verilen sayıyı karakter dizisine çevirir ve çevrilmiş karakter dizisinin adresini döndürür.
+
+------------
+
+- **ft_strmapi** : `char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));` fonksiyonu, s parametresi ile verilen karakter dizisindeki her bir karakteri f fonksiyonu ile işler ve işlenmiş karakter dizisinin adresini döndürür.
