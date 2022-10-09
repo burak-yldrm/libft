@@ -121,3 +121,23 @@ Bu proje kişiselleştirilmiş bir C kütüphane projesidir, içerisinde C de ye
 ------------
 
 - **ft_strmapi** : `char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));` fonksiyonu, s parametresi ile verilen karakter dizisindeki her bir karakteri f fonksiyonu ile işler ve işlenmiş karakter dizisinin adresini döndürür.
+
+------------
+
+- **ft_striteri** : `void	ft_striteri(char *s, void (*f)(unsigned int, char *));` fonksiyonu, s parametresi ile verilen karakter dizisindeki her bir karakteri f fonksiyonu ile işler.
+
+------------
+
+- **ft_putchar_fd** : `void	ft_putchar_fd(char c, int fd);` fonksiyonu, c parametresi ile verilen karakteri fd parametresi ile verilen dosya tanımlayıcısına yazar.
+
+------------
+
+- **ft_putstr_fd** : `void	ft_putstr_fd(char *s, int fd);` fonksiyonu, s parametresi ile verilen karakter dizisini fd parametresi ile verilen dosya tanımlayıcısına yazar.
+
+------------
+
+- **ft_putendl_fd** : `void	ft_putendl_fd(char *s, int fd);` fonksiyonu, s parametresi ile verilen karakter dizisini fd parametresi ile verilen dosya tanımlayıcısına yazar ve sonuna yeni satır karakteri ekler.
+
+------------
+
+- **ft_putnbr_fd** : `void	ft_putnbr_fd(int n, int fd);` fonksiyonu, n parametresi ile verilen sayıyı fd parametresi ile verilen dosya tanımlayıcısına yazar.
