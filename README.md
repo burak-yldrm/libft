@@ -141,3 +141,41 @@ Bu proje kişiselleştirilmiş bir C kütüphane projesidir, içerisinde C de ye
 ------------
 
 - **ft_putnbr_fd** : `void	ft_putnbr_fd(int n, int fd);` fonksiyonu, n parametresi ile verilen sayıyı fd parametresi ile verilen dosya tanımlayıcısına yazar.
+
+------------
+
+- **ft_lstnew** : `t_list	*ft_lstnew(void *content);` fonksiyonu, content parametresi ile verilen bellek alanının adresini içeren bir t_list yapısı oluşturur ve oluşturulan t_list yapısının adresini döndürür.
+
+------------
+
+- **ft_lstadd_front** : `void	ft_lstadd_front(t_list **lst, t_list *new);` fonksiyonu, lst parametresi ile verilen t_list yapısının başına new parametresi ile verilen t_list yapısını ekler.
+
+------------
+
+- **ft_lstsize** : `int	ft_lstsize(t_list *lst);` fonksiyonu, lst parametresi ile verilen t_list yapısının eleman sayısını döndürür.
+
+------------
+
+- **ft_lstlast** : `t_list	*ft_lstlast(t_list *lst);` fonksiyonu, lst parametresi ile verilen t_list yapısının son elemanının adresini döndürür.
+
+------------
+
+- **ft_lstadd_back** : `void	ft_lstadd_back(t_list **lst, t_list *new);` fonksiyonu, lst parametresi ile verilen t_list yapısının sonuna new parametresi ile verilen t_list yapısını ekler.
+
+------------
+
+- **ft_lstdelone** : `void	ft_lstdelone(t_list *lst, void (*del)(void *));` fonksiyonu, lst parametresi ile verilen t_list yapısının içeriğini del fonksiyonu ile siler.
+
+------------
+
+- **ft_lstclear** : `void	ft_lstclear(t_list **lst, void (*del)(void *));` fonksiyonu, lst parametresi ile verilen t_list yapısının içeriğini del fonksiyonu ile siler ve lst parametresinin adresini NULL yapar.
+
+------------
+
+- **ft_lstiter** : `void	ft_lstiter(t_list *lst, void (*f)(void *));` fonksiyonu, lst parametresi ile verilen t_list yapısındaki her bir elemanı f fonksiyonu ile işler.
+
+------------
+
+- **ft_lstmap** : `t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));` fonksiyonu, lst parametresi ile verilen t_list yapısındaki her bir elemanı f fonksiyonu ile işler ve işlenmiş t_list yapısının adresini döndürür. Eğer işlenirken bir hata oluşursa işlenmiş t_list yapısının içeriğini del fonksiyonu ile siler ve NULL döndürür.
+
+------------
