@@ -1,4 +1,4 @@
-#include "../Lib/libft.h"
+#include "libft.h"
 
 static char	*ft_array(char *str, unsigned int count, long int val)
 {

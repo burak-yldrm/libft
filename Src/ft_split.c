@@ -1,4 +1,4 @@
-#include "../Lib/libft.h"
+#include "libft.h"
 
 static int	count_word(const char *str, char c) // Verilen delimiter'a göre kaç adet kelime olduğunu bulur.
 {

@@ -1,6 +1,8 @@
 # LIBFT
 Bu proje kişiselleştirilmiş bir C kütüphane projesidir, içerisinde C de yer alan bazı fonksiyonların benzerleri(atoi, memcpy, strlen vb.) yazılmış olup struct yapılarına da yer verilmiştir.
 
+NOT: Bu proje olduğu gibi 42 okullarında kullanılmak üzere hazırlanmadığı için, 42 okullarında bu projeyi göndermek için biraz değişiklik yapmanız gerekebilir.
+
 - **ft_isalpha** : `int	ft_isalpha(int c);` fonksiyonu, c parametresi ile verilen karakterin alfabedeki bir harf olup olmadığını kontrol eder. Eğer harf ise 1, değilse 0 döndürür.
 
 ------------

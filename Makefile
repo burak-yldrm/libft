@@ -1,92 +1,80 @@
-NAME	= Bin/libft.a
-# oluşturucağımız kütüphanenin adı
+export GNUMAKEFLAGS	= --no-print-directory
+
+DEFAULT = \033[0;39m
+RED		= \033[0;91m
+GREEN	= \033[0;92m
+BLUE	= \033[0;94m
+MAGENTA	= \033[0;95m
+
+BIN		= libft.a
+NAME	= $(BIN_DIR)/$(BIN)
 CC		= gcc
-# gcc kullanılan compiler.
-CFLAGS	= -Wall -Wextra -Werror -I. -c
-# -Wall derleyici tarafından bildirilebilecek tüm uyarıları bildirir.
-# -Wextra ekstra uyarıları bildirir.
-# -Werror bildirilen tüm uyarıları hata olarak kabul eder.
-# -I. kütüphane dosyalarını bulmak için kullanılır.
-# -c derleme işlemini yapar ama bağlama işlemini yapmaz.
-SRC		= $(shell find . -type f ! -name "ft_lst*.c" -name "ft_*.c")
-# Src klasöründeki ft_lst*.c hariç tüm dosyaları bulur.
+CFLAGS	= -Wall -Wextra -Werror
+RM		= rm -f
+AR		= ar rcs
 
-BSRC	= $(wildcard Src/ft_lst*.c)
-# Src klasöründeki ft_lst*.c dosyalarını bulur.
+SRC_DIR	= src
+OBJ_DIR	= obj
+INC_DIR	= inc
+BIN_DIR	= bin
 
-OBJ		= $(SRC:%.c=%.o)
-# SRC değişkenindeki .c uzantılı dosyaların .o uzantılı dosyaları ile değiştirir.
-# NOT: Dosyalar çevirme işlemine tabi tutulduğu sırada flagleri otomatik olarak alır.
+SRC		= $(shell find . -type f ! -name "ft_lst*.c" -name "ft_*.c" | cut -c 7-)
+B_SRC	= $(shell find . -type f -name "ft_lst*.c" | cut -c 7-)
 
-B_OBJ	= $(BSRC:%.c=%.o)
-# BSRC değişkenindeki .c uzantılı dosyaların .o uzantılı dosyaları ile değiştirir.
-# NOT: Dosyalar çevirme işlemine tabi tutulduğu sırada flagleri otomatik olarak alır.
+OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+B_OBJ	= $(addprefix $(OBJ_DIR)/, $(B_SRC:.c=.o))
 
-Color_yellow = \033[33m
-Color_red = \033[31m
-Color_blue = \033[34m
+all:
+	@if [ ! -d "$(OBJ_DIR)" ]; then \
+		make $(NAME); \
+		echo "$(MAGENTA)$(BIN) created$(DEFAULT)"; \
+	else \
+		echo "$(MAGENTA)$(BIN) already exists$(DEFAULT)"; \
+	fi
 
-all: yo $(NAME)
-# all kuralı çağrıldığında $(NAME) kuralı çalışır.
+bonus:
+	@if [ ! -d "$(OBJ_DIR)" ]; then \
+		make $(NAME) $(B_OBJ); \
+		echo "$(MAGENTA)Bonus functions compiled$(DEFAULT)"; \
+		echo "$(MAGENTA)$(BIN) created$(DEFAULT)"; \
+	else \
+		echo "$(MAGENTA)$(BIN) already exists$(DEFAULT)"; \
+	fi
 
-bonus: yo $(B_OBJ)
-# bonus kuralı çağrıldığında $(B_OBJ) kuralı çalışır.
-	ar -rcs $(NAME) $(B_OBJ)
+$(NAME): create_dirs $(OBJ)
+	@$(AR) $(NAME) $(OBJ)
 
-$(NAME): $(OBJ)
-# $(NAME) kuralı $(OBJ) kuralını çağrır.
-	ar -rcs $(NAME) $(OBJ)
-# ar -rcs komutu kütüphane dosyası oluşturmak için kullanılır.
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@$(CC) $(CFLAGS) -I inc/ -c $< -o $@
 
 clean:
-# clean kuralı çağrıldığında aşağıdaki komutlar çalışır.
-	rm -rf $(OBJ)
-	rm -rf $(B_OBJ)
-# $(OBJ) değişkenindeki .o uzantılı dosyaları siler.
-# rm komutu -rf parametreleri ile çalıştırıldığında dosyaları siler.
-# -r parametresi klasörleri siler.
-# -f parametresi salt okunur dosyaları siler.
+	@if [ -d "$(OBJ_DIR)" ]; then \
+		$(RM) -r $(OBJ_DIR); \
+		echo "$(RED)Libft$(BLUE) objects removed.$(GREEN)"; \
+	else \
+		echo "$(RED)Libft$(BLUE) objects already removed.$(GREEN)"; \
+	fi
 
-fclean: clean
-# fclean kuralı clean kuralını çağrır.
-	rm -rf $(NAME)
-# $(NAME) değişkenindeki kütüphane dosyasını siler.
+fclean:
+	@if [ -d "$(OBJ_DIR)" ]; then \
+		$(RM) -r $(OBJ_DIR); \
+		echo "$(RED)Libft$(BLUE) objects removed.$(GREEN)"; \
+	else \
+		echo "$(RED)Libft$(BLUE) objects already removed.$(GREEN)"; \
+	fi
+	@if [ -d "$(BIN_DIR)" ]; then \
+		$(RM) -r $(BIN_DIR); \
+		echo "$(RED)$(BIN)$(BLUE) removed.$(GREEN)"; \
+	else \
+		echo "$(RED)$(BIN)$(BLUE) already removed.$(GREEN)"; \
+	fi
 
 re: fclean all
-# re kuralı fclean ve all kuralını çağrır.
 
-yo: # Önemli bir şey değil (:)
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⢹⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠞⠁⠀⢸⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⠤⠤⠤⢤⣤⣠⠔⠁⠀⠀⢀⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⣴⣶⣶⣶⡖⠒⠒⠒⠒⠶⠦⠤⢤⣴⠚⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡄⣠⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠈⠛⠿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠤⣄⠙⣯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠻⠦⣄⣀⠀⠀⠀⠀⣰⡋⣻⣦⠀⠀⠀⠀⠀⠀⢿⣦⣿⡇⠘⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣹⠁⠀⠀⠹⢿⣿⠟⠀⠀⠀⢶⣴⠀⠈⠉⠉⠀⠀⣿⣄⣰⠤⢤⡀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀$(Color_red)⡠⠤⢄⡀$(Color_yellow)⠀⣀⠀⠀⢀⣤⣀⣀⠤⠀$(Color_red)⠀⢸⠀⢹⡃$(Color_yellow)⠀⠀⡏⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡼⠦⣄⣇⠀$(Color_red)⢸⠀⠀⠀⢱$(Color_yellow)⠀⠀⠑⢞⠉⠉⢻⠃⠀⠀$(Color_red)⠀⠈⢦⡾$(Color_yellow)⠀⠀⣸⠃⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣏⠀⠀⠈⠙⢦$(Color_red) ⠳⠤⠴⠋$(Color_yellow)⠀⠀⠀⠈⠓⠖⠃⠀⠀⠀⠀⣠⡞⠁⠀⢀⡏⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣆⠀⠀⠀⠀⠙⢧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠖⠁⠀⠀⠀⡼⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_blue)⣾⠛⠒⠒⠶⠤⠤⠤⠤⠤⠤⠤$(Color_yellow)⠼⣆⠀⠀⠀⠀⠀⠙⠀⠀⠀⠀⠀⠒⠒⠒⠊⠀⠀⠀⠀⠀⠀⠀⣰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_blue)⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀$(Color_yellow)⢹⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣤⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_blue)⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠏$(Color_yellow)⠈⢷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_blue)⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠎⢀⣶$(Color_yellow)⠀⡟⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_blue)⢸⣄⣀⣀⣤⠤⠒⢻⠀⠀⢐⡿⠞⢁⡏⣠$(Color_yellow)⡇⠀⣀⣄⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_blue)⠈⠉⠀⠀⠀⠀⠀⢸⠀⠀⢀⣠⠀⣸⡟⢻$(Color_yellow)⡇⢠⡿⠟⠙⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_blue)⠀⠀⠀⠀⠀⠀⠀⢸⣠⠴⠋⢹⠀⣨⡇⠛$(Color_yellow)⣇⠋⢧⠀⠀⢳⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_blue)⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⢸⡼⢻⣷⠞$(Color_yellow)⢻⣄⠘⡄⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_blue)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠁⠀⠀$(Color_yellow)⠙⢦⣙⣄⡼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠓⠒⠒⠛⠉⠉⠑⢲⡤⠀⣄⡠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⠀⠀⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢧⣀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_yellow)⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "$(Color_red)██████╗ ██╗██╗  ██╗ █████╗  ██████╗██╗  ██╗██╗   ██╗"
-	@echo "$(Color_red)██╔══██╗██║██║ ██╔╝██╔══██╗██╔════╝██║  ██║██║   ██║"
-	@echo "$(Color_red)██████╔╝██║█████╔╝ ███████║██║     ███████║██║   ██║"
-	@echo "$(Color_red)██╔═══╝ ██║██╔═██╗ ██╔══██║██║     ██╔══██║██║   ██║"
-	@echo "$(Color_red)██║     ██║██║  ██╗██║  ██║╚██████╗██║  ██║╚██████╔╝"
-	@echo "$(Color_red)╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝B̷u̷r̷a̷k̷ ̷Y̷I̷L̷D̷I̷R̷I̷M̷"
+create_dirs:
+	@echo "$(BLUE)Creating Libft directories...$(GREEN)"
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(BIN_DIR)
+	@echo "$(GREEN)Compiling Libft...$(BLUE)"
 
-.PHONY: all clean fclean re bonus
-# .PHONY kuralı ile belirtilen kuralın dosya olmadığını belirtir.
+.PHONY: all clean fclean re create_dirs
